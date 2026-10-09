@@ -1,0 +1,71 @@
+.abt-hero {
+  margin-top: clamp(1.1rem, 4.4vh, 3.5rem);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  padding: clamp(24px, 3.4vw, 40px);
+}
+.abt-hero-inner { max-width: 820px; margin: 0 auto; }
+.abt-hero-title {
+  margin: 0 0 26px; text-align: center;
+  font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--faint);
+}
+.abt-stack { position: relative; }
+.abt-order-tag {
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px; margin: 0 0 16px;
+  font-size: 0.6875rem; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent);
+}
+.abt-layer {
+  display: grid; grid-template-columns: 200px 1fr;
+  gap: clamp(20px, 2.6vw, 32px); align-items: center;
+  padding: clamp(16px, 2.2vw, 24px);
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  transition: transform 0.24s var(--ease-out), border-color 0.24s var(--ease-out), box-shadow 0.24s var(--ease-out);
+}
+.abt-layer:hover { transform: translateY(-2px); border-color: var(--control); box-shadow: 0 20px 40px -24px rgba(14,22,33,0.22); }
+.abt-layer--eng { border-color: var(--hairline-strong); }
+.abt-layer--intel { border-color: rgba(124,92,240,0.32); background: rgba(124,92,240,0.035); }
+.abt-layer__photo { position: relative; aspect-ratio: 4 / 3; border-radius: 10px; overflow: hidden; background: var(--surface-2); flex: none; }
+.abt-layer__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; filter: saturate(0.92) contrast(1.03); }
+.abt-layer__photo__scrim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(14,22,33,0.35) 0%, transparent 55%); }
+.abt-layer__body { display: flex; flex-direction: column; gap: 6px; }
+.abt-layer-num { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.16em; color: var(--faint); font-variant-numeric: tabular-nums; }
+.abt-layer--intel .abt-layer-num { color: var(--violet); }
+.abt-layer-tag { display: inline-block; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-bottom: 4px; }
+.abt-layer--intel .abt-layer-tag { color: var(--violet); }
+.abt-layer h3 { margin: 0 0 6px; font-size: clamp(1.125rem, 2vw, 1.375rem); letter-spacing: -0.01em; font-weight: 700; line-height: 1.2; color: var(--ink); }
+.abt-layer p { margin: 0; font-size: 0.9375rem; line-height: 1.6; color: var(--muted); max-width: 52ch; }
+.abt-interlock { height: 18px; margin: 6px 0; }
+.abt-interlock svg { width: 100%; height: 100%; }
+.abt-hero-caption { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 24px 0 0; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+
+.abt-team {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  margin-top: clamp(1.1rem, 4.4vh, 3.5rem);
+  border-radius: var(--radius); overflow: hidden;
+  background: var(--surface); border: 1px solid var(--hairline);
+}
+.abt-team__photo { position: relative; min-height: 380px; overflow: hidden; background: var(--surface-2); }
+.abt-team__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; filter: saturate(0.92) contrast(1.03); }
+.abt-team__photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, transparent 55%, rgba(14,22,33,0.14)); pointer-events: none; }
+.abt-team__copy { padding: clamp(28px, 4vw, 56px); display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+.abt-team-k { display: inline-block; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0; }
+.abt-team h3 { margin: 0; font-size: clamp(1.25rem, 2.4vw, 1.75rem); letter-spacing: -0.02em; font-weight: 800; line-height: 1.15; max-width: 24ch; color: var(--ink); }
+.abt-team p { margin: 0; font-size: 0.9375rem; line-height: 1.65; color: var(--muted); max-width: 56ch; }
+
+.layer-closing { display: flex; align-items: center; gap: 12px; margin-top: clamp(20px, 3vw, 32px); padding-top: 20px; border-top: 1px solid var(--hairline); font-size: 0.9375rem; font-weight: 600; color: var(--ink); }
+.layer-closing::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex: none; }
+
+@media (max-width: 1000px) {
+  .abt-team { grid-template-columns: 1fr; }
+  .abt-team__photo { min-height: 260px; order: -1; }
+  .abt-layer { grid-template-columns: 1fr; }
+  .abt-layer__photo { aspect-ratio: 16 / 9; }
+}

@@ -1,0 +1,360 @@
+/* ============================================================
+   Xarpie theme layer — light + dark
+   Loaded after globals.css / motion.css. Tokens, logo, top bar,
+   sub-nav, hero, buttons, footer, progress bar and chatbot.
+   ============================================================ */
+
+:root {
+  --grid: rgba(14, 22, 33, 0.045);
+  --pill-bg: #0e1621;      /* dark pill in light mode */
+  --pill-fg: #ffffff;
+  --arrow-bg: #0e1621;
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --paper: #0b1018;
+  --ink: #eef2f8;
+  --surface: #0f1624;
+  --surface-2: #141c2c;
+  --muted: #aab6ca;
+  --faint: #8190a8;
+  --accent: #6b8cff;
+  --accent-deep: #8aa5ff;
+  --btn-fg: #0b1018;
+  --hairline: #1d2638;
+  --hairline-strong: #2a3650;
+  --grid: rgba(130, 160, 230, 0.075);
+  --pill-bg: #f4f7fc;      /* light pill in dark mode */
+  --pill-fg: #0b1018;
+  --arrow-bg: #f4f7fc;
+  color-scheme: dark;
+}
+[data-theme='dark'] ::selection { background: rgba(107, 140, 255, 0.35); color: #fff; }
+[data-theme='dark'] .dialog { background: rgba(11, 16, 24, 0.78); }
+
+body,
+.brand-mark,
+.footer-brand__mark {
+  font-family: var(--font-inter), 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Faint blueprint grid behind every page */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
+  min-height: 72px;
+  padding: 0 24px;
+  background: color-mix(in srgb, var(--paper) 90%, transparent);
+}
+.brand { gap: 14px; }
+.brand-infinity { width: 53px; height: 25px; color: var(--ink); }
+.brand-stack { gap: 4px; }
+.brand-mark {
+  font-weight: 900;
+  font-size: 1.75rem;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.brand-sub {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--muted);
+}
+.topbar nav { font-size: 0.9375rem; gap: 2px; }
+.nav-item > a { padding: 10px 14px; color: var(--muted); }
+.nav-item > a:hover { color: var(--ink); }
+.nav-item > a.active { font-weight: 700; color: var(--ink); }
+.nav-item > a.active::after {
+  left: 14px;
+  right: 14px;
+  bottom: 0;
+  height: 2px;
+  border-radius: 0;
+  background: var(--accent);
+}
+.topbar-actions { font-size: 0.9375rem; }
+.topbar-actions a { color: var(--ink); padding: 10px 14px; }
+.topbar-actions a.hide-sm:first-child { color: var(--muted); }
+.topbar-actions a:hover { color: var(--accent); }
+.theme-toggle { font-size: 0.6875rem; letter-spacing: 0.14em; padding: 10px 14px; }
+.theme-toggle svg { width: 14px; height: 14px; }
+
+.nav-dropdown ul {
+  min-width: 270px;
+  padding: 10px 8px;
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: 0 1px 2px rgba(14, 22, 33, 0.05), 0 24px 52px -18px rgba(14, 22, 33, 0.28);
+}
+[data-theme='dark'] .nav-dropdown ul { box-shadow: 0 24px 52px -18px rgba(0, 0, 0, 0.7); }
+.nav-dropdown li a { font-size: 0.875rem; padding: 8px 14px; align-items: center; color: var(--muted); }
+.nav-dropdown li a:hover { color: var(--ink); }
+.nav-dropdown__num { font-size: 0.75rem; letter-spacing: 0.06em; min-width: 26px; color: var(--accent); }
+
+/* ---------- Sub-nav ---------- */
+.subnav-wrap { top: 72px; background: color-mix(in srgb, var(--paper) 90%, transparent); }
+.subnav { max-width: 1280px; font-size: 0.8125rem; font-weight: 500; }
+.subnav a { padding: 12px 15px; line-height: 1.3; }
+.subnav a .num { font-size: 0.75rem; letter-spacing: 0.06em; }
+.subnav a.active { font-weight: 700; color: var(--ink); }
+.subnav a.active .num { color: var(--accent); }
+.subnav a.active::after { display: none; }
+
+/* ---------- Hero: clean panel on the grid (no photo card) ---------- */
+.photo-hero {
+  min-height: min(68vh, 600px);
+  align-items: center;
+  background: transparent;
+  color: var(--ink);
+  border-radius: 0;
+  overflow: visible;
+  margin-bottom: 8px;
+}
+.photo-hero__media,
+.photo-hero__scrim { display: none; }
+.photo-hero__content { padding: clamp(24px, 4vw, 56px) 0; max-width: 980px; }
+.photo-hero__content .t-h1 {
+  color: var(--ink);
+  max-width: 22ch;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+.photo-hero__content p:not(.eyebrow) { color: var(--muted); max-width: 62ch; }
+.photo-hero .btn-ghost--on-dark {
+  background: var(--surface-2);
+  color: var(--ink);
+  border: 1px solid var(--hairline-strong);
+}
+.photo-hero .btn-ghost--on-dark:hover { border-color: var(--ink); background: var(--surface-2); }
+
+/* Eyebrow → pill with number chip */
+.eyebrow--pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 6px 24px 6px 6px;
+  border-radius: 999px;
+  background: var(--pill-bg);
+  color: var(--pill-fg);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.eyebrow--pill::before { display: none; }
+.eyebrow--pill:has(.eyebrow__num) .eyebrow__label { padding-left: 0; }
+.eyebrow--pill:not(:has(.eyebrow__num)) { padding-left: 24px; }
+.eyebrow__num {
+  display: inline-grid;
+  place-items: center;
+  min-width: 50px;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.9375rem;
+  letter-spacing: 0.08em;
+}
+[data-theme='dark'] .eyebrow__num { color: #0b1018; }
+
+/* ---------- Buttons ---------- */
+.btn { padding: 15px 26px; }
+.btn-ghost { background: var(--surface-2); border-color: var(--hairline-strong); }
+
+/* ---------- Progress bar ---------- */
+.page-progress { height: 4px; background: var(--hairline); }
+.page-progress__fill { background: var(--accent); border-radius: 0 4px 4px 0; }
+
+/* ---------- Footer ---------- */
+.site-footer { background: var(--surface-2); }
+.footer-inner { padding: 18px 24px; font-size: 0.875rem; }
+.footer-brand { gap: 12px; }
+.footer-brand__infinity { width: 42px; height: 20px; }
+.footer-brand__mark { font-weight: 900; font-size: 1.1rem; letter-spacing: -0.03em; }
+.footer-brand__sub { font-size: 0.53rem; color: var(--muted); }
+.footer-links { gap: 22px; }
+.footer-links__k { font-size: 0.6875rem; letter-spacing: 0.18em; color: var(--ink); font-weight: 800; }
+.footer-copy { font-size: 0.875rem; }
+
+/* ---------- Chatbot ---------- */
+.chat-launcher {
+  background: var(--pill-bg);
+  color: var(--pill-fg);
+  border: 1px solid var(--hairline-strong);
+  letter-spacing: 0.04em;
+  box-shadow: 0 18px 44px -16px rgba(14, 22, 33, 0.45);
+}
+.chat-launcher:hover { background: var(--accent); color: #fff; }
+[data-theme='dark'] .chat-launcher:hover { color: #0b1018; }
+.chat-launcher__badge { box-shadow: 0 0 0 3px color-mix(in srgb, var(--cyan) 28%, transparent); }
+
+.chat-panel {
+  border-radius: 20px;
+  background: var(--surface);
+  border: 1px solid var(--hairline-strong);
+  box-shadow: 0 32px 80px -24px rgba(14, 22, 33, 0.4);
+}
+[data-theme='dark'] .chat-panel { box-shadow: 0 32px 80px -24px rgba(0, 0, 0, 0.75); }
+.chat-head { background: var(--surface); border-bottom: 1px solid var(--hairline); padding: 16px 18px; }
+.chat-head__avatar {
+  width: 48px;
+  height: 36px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--hairline-strong);
+  color: var(--ink);
+}
+.chat-head__mark { width: 32px; height: 15px; }
+.chat-head__name { font-weight: 800; letter-spacing: -0.01em; }
+.chat-head__status {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.chat-head__close { border-radius: 999px; border-color: var(--hairline-strong); }
+
+.chat-body, .chat-suggestions { background: var(--paper); }
+.chat-msg__avatar { background: var(--accent); color: #fff; }
+[data-theme='dark'] .chat-msg__avatar { color: #0b1018; }
+.chat-msg--user .chat-msg__avatar { background: var(--pill-bg); color: var(--pill-fg); }
+.chat-msg__bubble {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  color: var(--ink);
+  border-radius: 16px;
+}
+.chat-msg--bot .chat-msg__bubble { border-bottom-left-radius: 4px; }
+.chat-msg--user .chat-msg__bubble {
+  background: var(--pill-bg);
+  border-color: var(--pill-bg);
+  color: var(--pill-fg);
+  border-bottom-right-radius: 4px;
+}
+.chat-msg__bubble a { color: var(--accent); font-weight: 600; }
+.chat-msg--user .chat-msg__bubble a { color: inherit; }
+.chat-typing span { background: var(--accent); }
+
+.chat-suggestion {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline-strong);
+  color: var(--ink);
+  border-radius: 999px;
+  font-weight: 600;
+}
+.chat-suggestion:hover { border-color: var(--accent); color: var(--accent); background: var(--surface-2); }
+.chat-input-row { background: var(--surface); border-top: 1px solid var(--hairline); }
+.chat-input {
+  background: var(--surface-2);
+  color: var(--ink);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 999px;
+}
+.chat-input::placeholder { color: var(--faint); }
+.chat-input:focus { border-color: var(--accent); }
+.chat-send { background: var(--pill-bg); color: var(--pill-fg); border-radius: 999px; }
+.chat-send:hover { background: var(--accent); color: #fff; }
+[data-theme='dark'] .chat-send:hover { color: #0b1018; }
+.chat-footer { background: var(--surface); color: var(--faint); border-top: 1px solid var(--hairline); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .nav-item > a { padding: 10px 10px; }
+}
+@media (max-width: 720px) {
+  .topbar { padding: 0 16px; }
+  .brand-mark { font-size: 1.5rem; }
+  .brand-sub { font-size: 0.5625rem; letter-spacing: 0.18em; }
+  .brand-infinity { width: 42px; height: 20px; }
+  .photo-hero { min-height: 56vh; }
+  .footer-inner { padding: 16px; }
+}
+
+/* ============================================================
+   Leadership page — photo hero, MENA split section
+   (scoped to .team-page so the other pages keep the clean panel hero)
+   ============================================================ */
+.team-page .photo-hero {
+  min-height: min(72vh, 640px);
+  align-items: end;
+  border-radius: var(--radius);
+  overflow: hidden;
+  color: #f4f1ea;
+  margin-bottom: 20px;
+}
+.team-page .photo-hero__media,
+.team-page .photo-hero__scrim { display: block; }
+.team-page .photo-hero__content { padding: clamp(32px, 6vw, 88px); max-width: 860px; }
+.team-page .photo-hero__content .t-h1 { color: #fff; max-width: 20ch; }
+.team-page .photo-hero__content p:not(.eyebrow) { color: rgba(255, 255, 255, 0.85); }
+.team-page .photo-hero .eyebrow,
+.team-page .photo-hero .eyebrow--on-dark { color: rgba(255, 255, 255, 0.82); }
+
+.mena {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  margin-bottom: 20px;
+}
+.mena__media { position: relative; min-height: 480px; overflow: hidden; background: var(--surface-2); }
+.mena__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+  filter: saturate(0.92) contrast(1.03) brightness(0.98);
+}
+.mena__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(14, 22, 33, 0.28), transparent 60%);
+  pointer-events: none;
+}
+.mena__copy {
+  padding: clamp(32px, 5vw, 72px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+.mena__copy h2 { max-width: 18ch; }
+.mena__copy p:not(.eyebrow) { margin: 0; font-size: 1rem; line-height: 1.7; color: var(--muted); max-width: 52ch; }
+.mena__list { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.mena__list li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.9375rem; color: var(--muted); }
+.mena__list li::before {
+  content: '';
+  flex: none;
+  margin-top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+@media (max-width: 1000px) {
+  .mena { grid-template-columns: 1fr; }
+  .mena__media { min-height: 320px; }
+}
+@media (max-width: 720px) {
+  .team-page .photo-hero { min-height: 60vh; }
+}

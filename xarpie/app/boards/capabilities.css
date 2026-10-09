@@ -54,3 +54,40 @@
   .layer-intro { grid-template-columns: 1fr; }
   .caps { grid-template-columns: 1fr; }
 }
+/* ============================================================
+   Eyebrow pill — black text on a white pill, blue number chip
+   ============================================================ */
+.eyebrow--pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 6px 14px 6px 6px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid var(--hairline);
+  color: #0e1621;
+}
+
+.eyebrow--pill::before {
+  display: none;
+}
+
+.eyebrow--pill .eyebrow__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow--pill .eyebrow__label {
+  color: #0e1621;
+}

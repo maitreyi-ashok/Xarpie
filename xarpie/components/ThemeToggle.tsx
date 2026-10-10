@@ -35,7 +35,7 @@ export default function ThemeToggle() {
               strokeLinecap="round"
             />
           </svg>
-          Light
+          <span className="theme-toggle__label">Dark</span>
         </>
       ) : (
         <>
@@ -47,7 +47,7 @@ export default function ThemeToggle() {
               strokeLinejoin="round"
             />
           </svg>
-          Dark
+          <span className="theme-toggle__label">Light</span>
         </>
       )}
     </button>

@@ -24,7 +24,6 @@ export default function Footer() {
           >
             Careers
           </a>
-          <span className="footer-links__sep" aria-hidden>·</span>
           <span className="footer-copy">Digital transformation · Artificial intelligence</span>
           <span className="footer-copy">© 2026 Xarpie Labs. A Machani Group company.</span>
         </div>

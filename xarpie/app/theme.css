@@ -55,36 +55,50 @@ body::before {
 /* ---------- Top bar ---------- */
 .topbar {
   min-height: 58px;
-  padding: 0 30px;
+  padding: 0 28px;
   background: color-mix(in srgb, var(--paper) 90%, transparent);
 }
-.brand { gap: 11px; }
-.brand-infinity { width: 42px; height: 20px; color: var(--ink); }
+.brand { gap: 10px; }
+.brand-infinity { width: 46px; height: 24px; color: var(--ink); }
 .brand-stack { gap: 3px; }
 .brand-mark {
   font-weight: 900;
-  font-size: 1.625rem;      /* ~26px */
-  letter-spacing: -0.04em;
+  font-size: 1.5rem;        /* 24px */
+  letter-spacing: -0.045em;
   line-height: 1;
 }
 .brand-sub {
   font-size: 0.5rem;        /* 8px */
   font-weight: 700;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* Nav cluster — CHANGED: drives distance between labels */
+.topbar nav {
+  font-size: 0.9375rem;     /* 15px */
+  gap: 2px;
+  margin-left: auto;
+  margin-right: 8px;
+}
+/* Each nav label — CHANGED: padding drives visual gap */
+.nav-item > a {
+  padding: 8px 12px;
   color: var(--muted);
 }
-.topbar nav { font-size: 0.9375rem; gap: 0; margin-left: auto; margin-right: 8px; }
-.nav-item > a { padding: 9px 14px; color: var(--muted); }
 .nav-item > a:hover { color: var(--ink); }
 .nav-item > a.active { font-weight: 600; color: var(--ink); }
 .nav-item > a.active::after { display: none; }
+
+/* Actions cluster — CHANGED: distance from last nav label to Sign In group */
 .topbar-actions { font-size: 0.9375rem; gap: 8px; }
 .topbar-actions a { color: var(--ink); padding: 8px 10px; }
 .topbar-actions a:hover { color: var(--accent); }
 
 /* "Contact →" — transparent pill, arrow included in markup */
 .topbar-actions a.cta {
-  padding: 9px 14px;
+  padding: 8px 10px;
   border-radius: 999px;
   background: transparent;
   color: var(--ink);
@@ -117,7 +131,7 @@ body::before {
 
 /* ---------- Sub-nav ---------- */
 .subnav-wrap { top: 58px; background: color-mix(in srgb, var(--paper) 90%, transparent); }
-.subnav { font-size: 0.8125rem; font-weight: 500; padding: 0 30px; }
+.subnav { font-size: 0.8125rem; font-weight: 500; padding: 0 28px; }
 .subnav a { padding: 12px 16px; line-height: 1.3; }
 .subnav a .num { font-size: 0.75rem; letter-spacing: 0.06em; }
 .subnav a.active { font-weight: 700; color: var(--ink); }
@@ -195,7 +209,7 @@ body::before {
 .footer-inner {
   max-width: 100%;
   margin: 0 auto;
-  padding: 14px 30px;
+  padding: 14px 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -313,33 +327,33 @@ body::before {
 /* ---------- Responsive ---------- */
 @media (max-width: 1650px) {
   .topbar nav { font-size: 0.875rem; margin-right: 4px; }
-  .nav-item > a { padding: 9px 11px; }
+  .nav-item > a { padding: 8px 11px; }
   .topbar-actions { gap: 6px; }
   .theme-toggle { padding: 8px 8px; }
   .footer-links { gap: 18px; }
 }
 @media (max-width: 1500px) {
   .topbar nav { font-size: 0.8125rem; }
-  .nav-item > a { padding: 9px 9px; }
-  .topbar-actions a.cta { padding: 8px 12px; }
+  .nav-item > a { padding: 8px 9px; }
+  .topbar-actions a.cta { padding: 8px 10px; }
   .theme-toggle { font-size: 0; gap: 0; }
   .theme-toggle svg { width: 16px; height: 16px; }
   .footer-links { gap: 16px; }
-  .footer-copy:last-child { display: none; }  /* hide long copyright earlier */
+  .footer-copy:last-child { display: none; }
 }
 @media (max-width: 1380px) {
   .nav-item--careers { display: none; }
 }
 @media (max-width: 1240px) {
   .brand-mark { font-size: 1.375rem; }
-  .brand-infinity { width: 36px; height: 18px; }
+  .brand-infinity { width: 40px; height: 21px; }
   .footer-links { gap: 14px; }
 }
 @media (max-width: 1100px) {
   .topbar { padding: 0 20px; gap: 10px; }
   .subnav { padding: 0 20px; }
   .topbar nav { font-size: 0.75rem; margin-right: 2px; }
-  .nav-item > a { padding: 9px 7px; }
+  .nav-item > a { padding: 8px 7px; }
   .brand-sub { font-size: 0.5rem; letter-spacing: 0.16em; }
   .theme-toggle { font-size: 0; gap: 0; padding: 8px 8px; }
   .theme-toggle svg { width: 16px; height: 16px; }
@@ -368,7 +382,7 @@ body::before {
   .subnav a { padding: 10px 12px; }
   .brand-mark { font-size: 1.25rem; }
   .brand-sub { font-size: 0.5rem; letter-spacing: 0.18em; }
-  .brand-infinity { width: 32px; height: 16px; }
+  .brand-infinity { width: 34px; height: 18px; }
   .photo-hero { min-height: 56vh; }
   .footer-inner { padding: 12px 16px; }
   .footer-links { gap: 12px; font-size: 0.6875rem; }
@@ -401,7 +415,6 @@ body::before {
 .photo-hero--image .photo-hero__content p:not(.eyebrow) { color: rgba(255, 255, 255, 0.85); }
 .photo-hero--image .eyebrow,
 .photo-hero--image .eyebrow--on-dark { color: rgba(255, 255, 255, 0.82); }
-/* ghost button over a photo keeps its original translucent look */
 .photo-hero--image .btn-ghost--on-dark {
   background: transparent;
   color: rgba(255, 255, 255, 0.92);

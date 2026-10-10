@@ -5,27 +5,28 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-inner">
-        <div className="footer-brand">
+        <Link href="/" className="footer-brand" aria-label="Xarpie Labs home">
           <InfinityMark className="footer-brand__infinity" />
-          <div className="footer-brand__stack">
+          <span className="footer-brand__stack">
             <span className="footer-brand__mark">XARPIE</span>
             <span className="footer-brand__sub">A MACHANI GROUP COMPANY</span>
-          </div>
-        </div>
+          </span>
+        </Link>
 
         <div className="footer-links">
-          <span className="footer-links__k">CONNECT</span>
+          <span className="footer-links__k">Connect</span>
           <Link href="/contact">Contact</Link>
           <a href="mailto:contact@xarpie.com">contact@xarpie.com</a>
-          <a>Careers</a>
-          <span className="footer-links__sep">·</span>
-          <Link href="/capabilities">Digital transformation</Link>
-          <span className="footer-links__sep">·</span>
-          <Link href="/capabilities">Artificial intelligence</Link>
-        </div>
-
-        <div className="footer-copy">
-          © 2026 Xarpie Labs. A Machani Group company.
+          <a
+            href="https://machani.darwinbox.in/ms/candidate/careers"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Careers
+          </a>
+          <span className="footer-links__sep" aria-hidden>·</span>
+          <span className="footer-copy">Digital transformation · Artificial intelligence</span>
+          <span className="footer-copy">© 2026 Xarpie Labs. A Machani Group company.</span>
         </div>
       </div>
     </footer>

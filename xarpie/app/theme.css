@@ -54,26 +54,178 @@ body::before {
 
 /* ---------- Top bar ---------- */
 .topbar {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
   min-height: 58px;
   padding: 0 28px;
-  background: color-mix(in srgb, var(--paper) 90%, transparent);
+  border-bottom: 1px solid var(--hairline);
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
-.brand { gap: 10px; }
-.brand-infinity { width: 46px; height: 24px; color: var(--ink); }
-.brand-stack { gap: 3px; }
+
+/* Brand cluster — do NOT change (per your instruction) */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+  text-decoration: none;
+  color: inherit;
+}
+.brand-infinity { width: 46px; height: 24px; color: var(--ink); flex: none; }
+.brand-stack { display: inline-flex; flex-direction: column; gap: 3px; line-height: 1; }
 .brand-mark {
   font-weight: 900;
-  font-size: 1.5rem;        /* 24px */
+  font-size: 1.5rem;
   letter-spacing: -0.045em;
   line-height: 1;
+  color: var(--ink);
+  white-space: nowrap;
 }
 .brand-sub {
-  font-size: 0.5rem;        /* 8px */
+  font-size: 0.5rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   color: var(--muted);
   text-transform: uppercase;
+  white-space: nowrap;
 }
+
+/* ---- Nav cluster ---- */
+.topbar nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+  margin-right: 8px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.nav-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-item > a {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: color 0.15s var(--ease-out);
+}
+.nav-item > a:hover { color: var(--ink); }
+.nav-item > a.active { font-weight: 600; color: var(--ink); }
+.nav-item > a.active::after { display: none; }
+
+/* Dropdowns hidden by default — critical, otherwise they render inline */
+.nav-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  padding-top: 12px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.18s var(--ease-out), transform 0.22s var(--ease-out), visibility 0s linear 0.18s;
+  z-index: 70;
+  max-width: calc(100vw - 32px);
+}
+.nav-item.has-dropdown:hover .nav-dropdown,
+.nav-item.has-dropdown:focus-within .nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+  transition-delay: 0s;
+}
+
+.nav-dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 12px 8px;
+  min-width: 320px;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(14,22,33,0.05), 0 24px 52px -18px rgba(14,22,33,0.28);
+}
+[data-theme='dark'] .nav-dropdown ul { box-shadow: 0 24px 52px -18px rgba(0,0,0,0.7); }
+
+.nav-dropdown li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  font-size: 0.9375rem;
+  color: var(--muted);
+  border-radius: 8px;
+}
+.nav-dropdown li a:hover { color: var(--ink); background: var(--surface-2); }
+.nav-dropdown__num { font-size: 0.75rem; letter-spacing: 0.08em; color: var(--accent); }
+
+/* ---- Actions cluster ---- */
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+  font-size: 0.9375rem;
+}
+.topbar-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 10px;
+  color: var(--ink);
+  white-space: nowrap;
+  transition: color 0.15s var(--ease-out);
+}
+.topbar-actions a:hover { color: var(--accent); }
+
+.topbar-actions a.cta {
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font-weight: 500;
+  line-height: 1.2;
+}
+.topbar-actions a.cta:hover { color: var(--accent); }
+.topbar-actions a.cta span { transition: transform 0.2s var(--ease-out); }
+.topbar-actions a.cta:hover span { transform: translateX(3px); }
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s var(--ease-out);
+}
+.theme-toggle:hover { color: var(--accent); }
+.theme-toggle svg { width: 14px; height: 14px; flex: none; }
+.theme-toggle__label { text-transform: uppercase; letter-spacing: 0.14em; }
 
 /* Nav cluster — CHANGED: drives distance between labels */
 .topbar nav {

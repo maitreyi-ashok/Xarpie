@@ -6,7 +6,7 @@ import InfinityMark from './InfinityMark';
 import ThemeToggle from './ThemeToggle';
 
 type DropdownItem = { href: string; num: string; label: string };
-type NavItem = { href: string; label: string; dropdown?: DropdownItem[] };
+type NavItem = { href: string; label: string; dropdown?: DropdownItem[]; external?: boolean };
 
 const NAV: NavItem[] = [
   {
@@ -14,11 +14,12 @@ const NAV: NavItem[] = [
     label: 'Insights',
     dropdown: [
       { href: '/insights#evidence',       num: '01', label: 'What we argue, and why' },
-      { href: '/insights#foundation',     num: '02', label: 'Contents' },
-      { href: '/insights#accountability', num: '03', label: 'Build or buy, on evidence' },
-      { href: '/insights#travels',        num: '04', label: 'The foundation decides' },
+      { href: '/insights#foundation',     num: '02', label: 'The foundation decides' },
+      { href: '/insights#accountability', num: '03', label: 'Accountability past go-live' },
+      { href: '/insights#travels',        num: '04', label: 'A method that travels' },
     ],
   },
+  { href: '/team', label: 'Leadership' },
   {
     href: '/operating-model',
     label: 'Operating Model',
@@ -49,8 +50,9 @@ const NAV: NavItem[] = [
       { href: '/industries#case-03', num: '03', label: 'Sovereign AI' },
     ],
   },
-  { href: '/team',  label: 'Leadership' },
   { href: '/about', label: 'About' },
+  { href: '/signin', label: 'Sign In' },
+  { href: 'https://machani.darwinbox.in/ms/candidate/careers', label: 'Careers', external: true },
 ];
 
 export default function Nav() {
@@ -80,11 +82,17 @@ export default function Nav() {
         {NAV.map((item) => (
           <div
             key={item.href}
-            className={`nav-item${item.dropdown ? ' has-dropdown' : ''}`}
+            className={`nav-item${item.dropdown ? ' has-dropdown' : ''}${item.label === 'Careers' ? ' nav-item--careers' : ''}`}
           >
-            <Link href={item.href} className={isActive(item) ? 'active' : ''}>
-              {item.label}
-            </Link>
+            {item.external ? (
+              <a href={item.href} target="_blank" rel="noopener noreferrer">
+                {item.label}
+              </a>
+            ) : (
+              <Link href={item.href} className={isActive(item) ? 'active' : ''}>
+                {item.label}
+              </Link>
+            )}
 
             {item.dropdown && (
               <div className="nav-dropdown" role="menu">
@@ -106,8 +114,6 @@ export default function Nav() {
 
       {/* ---------- Right-hand actions ---------- */}
       <div className="topbar-actions">
-        <a className="hide-sm">Sign In</a>
-        <a className="hide-sm">Careers</a>
         <Link href="/contact" className="cta">
           Contact <span aria-hidden>→</span>
         </Link>

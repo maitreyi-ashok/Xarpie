@@ -1,0 +1,571 @@
+/* ============================================================
+   Reduced motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  .hscroll,
+  .steps-overview {
+    scroll-behavior: auto;
+  }
+}
+
+/* ============================================================
+   Horizontal scroller — shared wrapper
+   ============================================================ */
+.hscroll-wrap {
+  position: relative;
+  margin-top: clamp(1.1rem, 4.4vh, 3.5rem);
+}
+
+/* ============================================================
+   Card variant scroller (used on /about — Four positions)
+   ============================================================ */
+.hscroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 4px 4px 20px;
+  margin: 0 -4px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  outline: none;
+}
+.hscroll::-webkit-scrollbar { display: none; }
+.hscroll:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: var(--radius);
+}
+
+.hscroll-item {
+  flex: 0 0 clamp(280px, 33%, 360px);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 26px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  color: var(--ink);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+  transition:
+    transform 0.24s var(--ease-out),
+    border-color 0.24s var(--ease-out),
+    box-shadow 0.24s var(--ease-out);
+}
+.hscroll-item::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+.hscroll-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 40px -24px rgba(14, 22, 33, 0.22);
+}
+.hscroll-item:hover::after {
+  transform: scaleX(1);
+}
+
+.hscroll-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--accent);
+  flex: none;
+  transition:
+    background-color 0.24s var(--ease-out),
+    color 0.24s var(--ease-out),
+    border-color 0.24s var(--ease-out);
+}
+.hscroll-item:hover .hscroll-num {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.hscroll-title {
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0;
+  flex: 1;
+}
+.hscroll-sub {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0;
+  flex: 1;
+}
+.hscroll-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  white-space: nowrap;
+}
+.hscroll-tag::before {
+  content: "";
+  width: 20px;
+  height: 1px;
+  background: var(--control);
+  flex: none;
+  transition:
+    width 0.24s var(--ease-out),
+    background-color 0.24s var(--ease-out);
+}
+.hscroll-item:hover .hscroll-tag::before {
+  width: 28px;
+  background: var(--accent);
+}
+
+/* ============================================================
+   Step variant scroller (used on /operating-model — Six steps)
+   ============================================================ */
+.steps-overview {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 4px 4px 20px;
+  margin: 0 -4px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  outline: none;
+}
+.steps-overview::-webkit-scrollbar { display: none; }
+.steps-overview:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: var(--radius);
+}
+
+.step-pill {
+  flex: 0 0 clamp(240px, 28%, 300px);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px 20px;
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  cursor: pointer;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  transition:
+    background-color 0.2s var(--ease-out),
+    border-color 0.2s var(--ease-out),
+    transform 0.2s var(--ease-out),
+    box-shadow 0.2s var(--ease-out);
+}
+.step-pill::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+.step-pill:hover {
+  background: var(--surface);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -24px rgba(14, 22, 33, 0.18);
+}
+.step-pill:hover::after {
+  transform: scaleX(1);
+}
+
+.step-pill__num {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.step-pill__label {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+.step-pill__sub {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-top: 2px;
+}
+
+/* ============================================================
+   Controls row — dots + arrows (shared by both variants)
+   ============================================================ */
+.hscroll-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.hscroll-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.hscroll-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--hairline-strong);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition:
+    width 0.28s var(--ease-out),
+    background-color 0.28s var(--ease-out);
+}
+.hscroll-dot:hover {
+  background: var(--muted);
+}
+.hscroll-dot.active {
+  width: 26px;
+  background: var(--ink);
+}
+.hscroll-dot.active:hover {
+  background: var(--ink);
+}
+
+.hscroll-arrows {
+  display: flex;
+  gap: 8px;
+}
+.hscroll-arrow {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--hairline-strong);
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    border-color 0.2s var(--ease-out),
+    background-color 0.2s var(--ease-out),
+    transform 0.2s var(--ease-out),
+    opacity 0.2s var(--ease-out);
+}
+.hscroll-arrow:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: var(--surface-2);
+  transform: translateY(-1px);
+}
+.hscroll-arrow:active:not(:disabled) {
+  transform: translateY(0);
+}
+.hscroll-arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.hscroll-arrow svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ============================================================
+   Responsive adjustments
+   ============================================================ */
+@media (max-width: 1000px) {
+  .hscroll-item {
+    flex-basis: clamp(260px, 46%, 320px);
+  }
+  .step-pill {
+    flex-basis: clamp(240px, 46%, 300px);
+  }
+}
+
+@media (max-width: 720px) {
+  .hscroll-item {
+    flex-basis: 84%;
+  }
+  .step-pill {
+    flex-basis: 84%;
+  }
+}
+/* ============================================================
+   Capability variant — diagram cards for the engineering base
+   ============================================================ */
+.hscroll--capability {
+  padding: 4px 4px 24px;
+}
+
+.hscroll-cap {
+  flex: 0 0 clamp(280px, 30%, 340px);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  cursor: pointer;
+  overflow: hidden;
+  text-align: left;
+  position: relative;
+  transition:
+    transform 0.24s var(--ease-out),
+    border-color 0.24s var(--ease-out),
+    box-shadow 0.24s var(--ease-out);
+}
+.hscroll-cap::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+.hscroll-cap:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 40px -24px rgba(14, 22, 33, 0.22);
+}
+.hscroll-cap:hover::after {
+  transform: scaleX(1);
+}
+
+.hscroll-cap__diagram {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--hairline);
+  display: grid;
+  place-items: center;
+  padding: 14px;
+  overflow: hidden;
+}
+.hscroll-cap__diagram svg {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+.hscroll-cap__body {
+  padding: 20px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hscroll-cap__num {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.hscroll-cap__title {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.hscroll-cap__sub {
+  margin: 4px 0 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .hscroll-cap { flex-basis: clamp(260px, 46%, 320px); }
+}
+@media (max-width: 720px) {
+  .hscroll-cap { flex-basis: 84%; }
+}
+
+/* ============================================================
+   Capability photo scroller
+   Two variants: engineering (blue accent) + intelligence (violet)
+   ============================================================ */
+.cap-photo-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 4px 4px 20px;
+  margin: 0 -4px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  outline: none;
+}
+.cap-photo-scroll::-webkit-scrollbar { display: none; }
+.cap-photo-scroll:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: var(--radius);
+}
+.cap-photo-scroll--intel:focus-visible {
+  outline-color: var(--violet);
+}
+
+/* ---- Card ---- */
+.cap-photo-item {
+  flex: 0 0 clamp(280px, 32%, 360px);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition:
+    transform 0.24s var(--ease-out),
+    border-color 0.24s var(--ease-out),
+    box-shadow 0.24s var(--ease-out);
+}
+.cap-photo-item::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+.cap-photo-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 40px -24px rgba(14, 22, 33, 0.22);
+}
+.cap-photo-item:hover::after { transform: scaleX(1); }
+
+/* Intel variant accent */
+.cap-photo-scroll--intel .cap-photo-item { border-color: rgba(124, 92, 240, 0.2); }
+.cap-photo-scroll--intel .cap-photo-item::after { background: var(--violet); }
+.cap-photo-scroll--intel .cap-photo-item:hover {
+  border-color: var(--violet);
+  box-shadow: 0 20px 40px -24px rgba(124, 92, 240, 0.28);
+}
+
+/* ---- Media (photo) ---- */
+.cap-photo-item__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+.cap-photo-item__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 40%;
+  filter: saturate(0.92) contrast(1.03) brightness(0.98);
+  transition: transform 0.6s var(--ease-out);
+}
+.cap-photo-item:hover .cap-photo-item__media img {
+  transform: scale(1.04);
+}
+.cap-photo-item__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(14, 22, 33, 0.32) 0%,
+    rgba(14, 22, 33, 0.06) 45%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* ---- Body ---- */
+.cap-photo-item__body {
+  padding: clamp(20px, 2.4vw, 26px);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cap-photo-item__num {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.cap-photo-scroll--intel .cap-photo-item__num { color: var(--violet); }
+
+.cap-photo-item__title {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.cap-photo-item__sub {
+  margin: 4px 0 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1000px) {
+  .cap-photo-item { flex-basis: clamp(260px, 46%, 320px); }
+}
+@media (max-width: 720px) {
+  .cap-photo-item { flex-basis: 84%; }
+}

@@ -1,0 +1,71 @@
+.step { display: grid; grid-template-columns: 1fr 280px; gap: clamp(24px, 4vw, 56px); align-items: start; }
+.step__body { display: flex; flex-direction: column; gap: 16px; }
+.step__header { display: flex; flex-direction: column; gap: 8px; }
+.step__num { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 0; }
+.step__title { max-width: 22ch; }
+.step__lede { font-size: clamp(1rem, 1.4vw, 1.0625rem); line-height: 1.6; color: var(--ink); font-weight: 500; margin: 0; max-width: 60ch; }
+.step__copy { font-size: 1rem; line-height: 1.7; color: var(--muted); margin: 0; max-width: 60ch; }
+.step__outcome { margin-top: 8px; padding: 20px 24px; border-radius: var(--radius); background: var(--surface-2); border: 1px solid var(--hairline); border-left: 3px solid var(--accent); }
+.step__outcome-k { display: block; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.step__outcome p { margin: 0; font-size: 0.9375rem; line-height: 1.55; color: var(--ink); }
+.step__diagram { margin: 20px 0 4px; padding: 20px; border-radius: var(--radius); background: var(--surface-2); border: 1px solid var(--hairline); display: grid; place-items: center; }
+.step__diagram svg { width: 100%; max-width: 480px; height: auto; }
+.step__nav { position: sticky; top: 140px; display: flex; flex-direction: column; gap: 2px; padding: 20px; border-radius: var(--radius); background: var(--surface-2); border: 1px solid var(--hairline); }
+.step__nav-k { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin: 0 0 10px; }
+.step__nav a { display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 8px 10px; border-radius: 8px; font-size: 0.8125rem; line-height: 1.4; color: var(--muted); cursor: pointer; transition: background-color 0.15s var(--ease-out), color 0.15s var(--ease-out); }
+.step__nav a:hover { background: var(--surface); color: var(--ink); }
+.step__nav a.current { background: var(--surface); color: var(--ink); font-weight: 600; }
+.step__nav-num { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--faint); }
+.step__nav a.current .step__nav-num { color: var(--accent); }
+
+.ways { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: clamp(1.1rem, 4.4vh, 3.5rem); }
+.way { display: flex; flex-direction: column; padding: clamp(24px, 2.8vw, 32px); border-radius: var(--radius); background: var(--surface); border: 1px solid var(--hairline); transition: transform 0.24s var(--ease-out), border-color 0.24s var(--ease-out), box-shadow 0.24s var(--ease-out); }
+.way:hover { transform: translateY(-3px); border-color: var(--control); box-shadow: 0 20px 40px -24px rgba(14,22,33,0.22); }
+.way__k { display: inline-block; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.way h3 { margin: 0 0 12px; font-size: 1.125rem; font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; color: var(--ink); }
+.way p { margin: 0 0 20px; font-size: 0.9375rem; line-height: 1.6; color: var(--muted); }
+.way__for { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--hairline); font-size: 0.8125rem; line-height: 1.55; color: var(--faint); }
+.way__for b { display: block; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+
+@media (max-width: 1000px) {
+  .step { grid-template-columns: 1fr; }
+  .step__nav { position: static; }
+  .ways { grid-template-columns: 1fr; }
+}
+/* ============================================================
+   Eyebrow pill — black text on a white pill, blue number chip
+   ============================================================ */
+.eyebrow--pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 6px 14px 6px 6px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid var(--hairline);
+  color: #0e1621;
+}
+
+.eyebrow--pill::before {
+  display: none;
+}
+
+.eyebrow--pill .eyebrow__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow--pill .eyebrow__label {
+  color: #0e1621;
+}
